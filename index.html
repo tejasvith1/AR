@@ -9,13 +9,13 @@
             const userAgent = navigator.userAgent.toLowerCase();
             
             if (userAgent.includes("android")) {
-                // ✅ Android - Open in Scene Viewer (Google AR)
-                window.location.href = "https://arvr.google.com/scene-viewer/1.0?file=https://tejasvith1.github.io/AR/model1.glb&mode=ar_preferred";
+                // ✅ Android - Open in Scene Viewer without Play Store Redirection
+                window.location.href = "https://arvr.google.com/scene-viewer/1.0?file=https://tejasvith1.github.io/AR/model1.glb&mode=ar_only&link=https://tejasvith1.github.io/AR/";
             } else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
                 // ✅ iOS - Open in AR Quick Look
                 window.location.href = "https://tejasvith1.github.io/AR/model1.usdz";
             } else {
-                // ❌ Show message if not supported
+                // ❌ Show message if AR is not supported
                 document.getElementById("message").innerText = "AR is only supported on Android (Scene Viewer) and iOS (AR Quick Look).";
             }
         }
