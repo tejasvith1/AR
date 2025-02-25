@@ -3,29 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launching AR...</title>
+    <title>Redirecting to AR...</title>
     <script>
         function openARModel() {
-            const androidModel = "https://tejasvith1.github.io/AR/model1.glb"; // Change to model2.glb if needed
-            const iosModel = "https://tejasvith1.github.io/AR/model1.usdz"; // Change to model2.usdz if needed
-
             const userAgent = navigator.userAgent.toLowerCase();
-
             if (userAgent.includes("android")) {
-                // Android: Open Scene Viewer directly
-                window.location.href = `intent://${androidModel}#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;end;`;
+                // Android - Open in Scene Viewer
+                window.location.href = "intent://your-username.github.io/your-repository-name/model1.glb#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;end;";
             } else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
-                // iOS: Open AR Quick Look
-                window.location.href = iosModel;
+                // iOS - Open in AR Quick Look
+                window.location.href = "https://your-username.github.io/your-repository-name/model1.usdz";
             } else {
-                // Fallback: Show message
-                document.getElementById("message").innerText = "Your device does not support AR.";
+                // Fallback - Show error message
+                document.getElementById("message").innerText = "AR is only supported on Android (Scene Viewer) and iOS (AR Quick Look).";
             }
         }
     </script>
 </head>
 <body onload="openARModel()">
     <h2>Loading AR...</h2>
-    <p id="message">If nothing happens, please enable AR on your device.</p>
+    <p id="message">If nothing happens, please enable AR in your device.</p>
 </body>
 </html>
