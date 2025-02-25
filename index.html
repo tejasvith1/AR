@@ -3,35 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Model Viewer</title>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <title>Redirecting to AR...</title>
+    <script>
+        function openARModel() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.includes("android")) {
+                // Android - Open in Scene Viewer
+                window.location.href = "intent://your-username.github.io/your-repository-name/model1.glb#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;end;";
+            } else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
+                // iOS - Open in AR Quick Look
+                window.location.href = "https://your-username.github.io/your-repository-name/model1.usdz";
+            } else {
+                // Fallback - Show error message
+                document.getElementById("message").innerText = "AR is only supported on Android (Scene Viewer) and iOS (AR Quick Look).";
+            }
+        }
+    </script>
 </head>
-<body>
-    <h2>AR Models</h2>
-
-    <!-- Model 1 -->
-    <model-viewer 
-        src="model1.glb" 
-        ar 
-        ar-modes="webxr scene-viewer quick-look"
-        camera-controls 
-        auto-rotate
-        style="width: 100%; height: 400px;">
-    </model-viewer>
-    <p>Model 1 in AR</p>
-
-    <br>
-
-    <!-- Model 2 -->
-    <model-viewer 
-        src="model2.glb" 
-        ar 
-        ar-modes="webxr scene-viewer quick-look"
-        camera-controls 
-        auto-rotate
-        style="width: 100%; height: 400px;">
-    </model-viewer>
-    <p>Model 2 in AR</p>
-
+<body onload="openARModel()">
+    <h2>Loading AR...</h2>
+    <p id="message">If nothing happens, please enable AR in your device.</p>
 </body>
 </html>
