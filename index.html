@@ -7,17 +7,22 @@
     <script>
         function openARModels() {
             const userAgent = navigator.userAgent.toLowerCase();
-            
+
             if (userAgent.includes("android")) {
-                // ✅ Android - Open both models in Scene Viewer
-                window.location.href = "https://arvr.google.com/scene-viewer/1.0?file=https://tejasvith1.github.io/AR/model1.glb&file=https://tejasvith1.github.io/AR/model2.glb&mode=ar_preferred&title=My%20AR%20Models";
-            } else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
-                // ✅ iOS - Open first model, with manual selection for second
+                // ✅ Android - Open Scene Viewer with multiple models
+                window.location.href = "https://arvr.google.com/scene-viewer/1.0?file=https://tejasvith1.github.io/AR/model1.glb&mode=ar_preferred";
+                setTimeout(() => {
+                    window.location.href = "https://arvr.google.com/scene-viewer/1.0?file=https://tejasvith1.github.io/AR/model2.glb&mode=ar_preferred";
+                }, 3000); // Load second model after 3 seconds
+            } 
+            else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
+                // ✅ iOS - Open first model, then load the second after 3 seconds
                 window.location.href = "https://tejasvith1.github.io/AR/model1.usdz";
                 setTimeout(() => {
                     window.location.href = "https://tejasvith1.github.io/AR/model2.usdz";
-                }, 3000); // Opens second model after 3 seconds
-            } else {
+                }, 3000);
+            } 
+            else {
                 // ❌ Show message if AR is not supported
                 document.getElementById("message").innerText = "AR is only supported on Android (Scene Viewer) and iOS (AR Quick Look).";
             }
